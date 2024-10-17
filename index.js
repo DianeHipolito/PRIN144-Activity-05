@@ -52,9 +52,10 @@ app.put("/tasks/:id", (request, response) => {
     }
 });
 
+// patch task
 app.patch("/tasks/:id", (request, response) => {
-    const id = request.params.id;
-    const task = tasks.find(task => task.id === id);
+    const id = parseInt(request.params.id);
+    const taskIndex = tasks.findIndex(task => task.id === id);
 
     if (task) {
         Object.assign(task, request.body);
@@ -64,6 +65,7 @@ app.patch("/tasks/:id", (request, response) => {
     }
 });
 
+// delete task
 app.delete("/tasks/:id", (request, response) => {
     const id = parseInt(request.params.id);
     const taskIndex = tasks.findIndex(task => task.id === id);
